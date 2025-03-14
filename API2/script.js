@@ -4,21 +4,23 @@
 
 const getDragonBallCharacters = async () => {
     try {
-        const response = await fetch('https://dogapi.dog/api/v2/breeds');
+        const response = await fetch('https://rickandmortyapi.com/api/character');
         if (!response.ok) throw new Error('Error al obtener los datos');
         
         const data = await response.json();
         const cardsParent = document.getElementById('cards');
 console.log( data.id)
-        data.data.forEach(emely => {
+        data.results.forEach(emely => {
             const card = document.createElement('div');
             card.innerHTML = `
-                <div class="bg-white shadow-md rounded-lg overflow-hidden">
-       
-
+               <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img src="${emely.image}" alt="${emely.name}" class="w-32 aspect-square object-cover">
+   
                     <div class="p-4">
-                        <h2 class="text-xl font-bold mb-2">${emely.attributes.name}</h2>
-                        <p class="text-gray-700">${emely.attributes.description}</p>
+                        <h2 class="text-xl font-bold mb-2">${emely.name}</h2>
+                        <p class="text-gray-700">${emely.status}</p>
+                         <p class="text-gray-700">${emely.species}</p>
+                               <p class="text-gray-700">${emely.gender}</p>
                     </div>
                 </div>  
             `;
@@ -33,7 +35,7 @@ console.log( data.id)
 
 
 const getDragonBallCharacters2 = () => {
-    fetch('https://dogapi.dog/api/v2/breeds')
+    fetch('https://rickandmortyapi.com/api/character')
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
